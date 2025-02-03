@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Princess</title>
+  <link rel="stylesheet" href="hbdp.css">
+  <style>
+    body {
+      background-color: #0636b9;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* "You broke my heart" szöveg a képernyő tetején */
+    #heart-message {
+      font-size: 24px; /* Kisebb méret */
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Kérdés a "Do you want to change your decision?" szöveg kisebb legyen */
+    #change-decision-question {
+      font-size: 20px; /* Kisebb méret */
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    /* Gombok stílus */
+    button {
+      background-color: #207dac;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3cbec3;
+    }
+
+    #no-marriage {
+      background-color: #c94b4b;
+    }
+
+    #no-marriage:hover {
+      background-color: #e56c6c;
+    }
+
+    /* Két gomb egymás mellett "or" felirattal */
+    .confirmation-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center; /* Gombok egymás mellé */
+      align-items: center;
+    }
+
+    .confirmation-buttons button {
+      margin: 10px;
+    }
+
+    /* "or" felirat */
+    .confirmation-buttons span {
+      margin: 0 10px;
+      font-size: 24px; /* Közepes méret */
+    }
+
+    /* A végső szöveg és gomb középre */
+    #final-message {
+      margin-top: 20px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    #click-button {
+      background-color: #1d72b8; /* Kék gomb */
+      color: white;
+      margin-top: 20px;
+    }
+
+    #click-button:hover {
+      background-color: #3a8ec2; /* Világosabb kék árnyalat */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Először a "Will you marry me?" kérdés és a két gomb -->
+  <div id="marry-question">
+    <h1>So, will you marry me?</h1>
+    <button id="yes-marriage" onclick="handleMarriageAnswer('yes')">Yes</button>
+    <button id="no-marriage" onclick="handleMarriageAnswer('no')">Nah</button>
+  </div>
+
+  <script>
+    // Kezeli a válaszokat
+    function handleMarriageAnswer(answer) {
+      // Elrejti a kérdéseket és válaszokat
+      document.getElementById('marry-question').style.display = 'none'; 
+
+      if (answer === 'no') {
+        // Ha "Nah"-ra kattintanak, jön a "You broke my heart" üzenet
+        document.body.innerHTML += `
+          <div id="heart-message">
+            <h1>You broke my heart :(</h1>
+          </div>
+        `;
+
+        // Megjelenítjük a "Do you want to change your decision?" kérdést és a két Yes gombot
+        document.body.innerHTML += `
+          <div id="change-decision-question">
+            <h2>Do you want to change your decision?</h2>
+          </div>
+          <div class="confirmation-buttons">
+            <button onclick="confirmYes()">Yes</button>
+            <span>or</span>
+            <button onclick="confirmYes()">Yes</button>
+          </div>
+        `;
+      } else if (answer === 'yes') {
+        // Ha "Yes"-re kattintottak, közvetlenül a "I don't have money for a wedding" szöveg jelenjen meg
+        document.body.innerHTML += `
+          <div id="final-message">
+            <h1>I don't have money for a wedding, but I have a...</h1>
+            <button id="click-button" onclick="goToSpotify()">surprise</button>
+          </div>
+        `;
+      }
+    }
+
+    function confirmYes() {
+      // Elrejti a "Do you want to change your decision?" szöveget és a gombokat
+      document.getElementById('heart-message').style.display = 'none';
+      document.getElementById('change-decision-question').style.display = 'none';
+      document.querySelector('.confirmation-buttons').style.display = 'none';
+
+      // Megjeleníti az új szöveget és gombot középen
+      document.body.innerHTML += `
+        <div id="final-message">
+          <h1>I don't have money for a wedding, but I have a...</h1>
+          <button id="click-button" onclick="goToSpotify()">surprise</button>
+        </div>
+      `;
+    }
+
+    function goToSpotify() {
+      window.location.href = "https://open.spotify.com/playlist/6mERtTLJHYXNzGYuGA2Vro?si=jOTbUukZR4CA91ROxC1ovQ&pi=oGZZy41OQJiAn";  // Spotify playlist link
+    }
+  </script>
+
+</body>
+</html>

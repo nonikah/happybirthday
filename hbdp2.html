@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Princess</title>
+    <link rel="stylesheet" href="hbdp.css">
+
+    <style>
+        body {
+            background-color: #0636b9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            flex-direction: column; /* Vertikális elrendezés */
+        }
+
+        .great-choice {
+            color: black;
+            font-size: 32px;
+            margin: 0; /* Elérjük, hogy a szöveg közvetlenül a tetején legyen */
+            position: absolute; /* Az oldal tetejére helyezzük */
+            top: 0; /* Az oldal tetején lesz */
+            width: 100%; /* A teljes szélességet lefedi */
+            text-align: center; /* A szöveget középre igazítjuk */
+        }
+
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px; /* A többi tartalom eltolása alulról */
+        }
+
+        h2 {
+            margin: 10px 0;
+        }
+
+        .skip-container {
+            margin-top: 20px;
+        }
+
+        .container button {
+            background-color: #207dac;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #3cbec3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="great-choice">
+        <h1>Great choice</h1>
+    </div>
+
+    <div class="message-container">
+        <h2>I just want to tell you...</h2>
+        <p id="message">I like you since the first day when I saw you.</p>
+
+        <div class="skip-container">
+            <button id="skipButton" onclick="skipMessage()">Skip</button>
+        </div>
+    </div>
+
+<script>
+    let currentMessage = 0;
+    const messages = [
+        "I like you since the first day when I saw you.",
+        "You're my addiction.",
+        "Your eyes are beautiful.",
+        "I adore stalking you.",
+        "I can't get enough of your scent.",
+        "I wanna be yours."
+    ];
+
+    function skipMessage() {
+        currentMessage++;
+
+        if (currentMessage < messages.length) {
+            document.getElementById("message").innerText = messages[currentMessage];
+        } else {
+            // Ha az összes üzenet eltűnt, átirányítunk egy új oldalra
+            window.location.href = 'hbdp3.html';  // Itt adhatod meg a következő oldal URL-jét
+        }
+
+        // Csak akkor változtatjuk meg a gomb feliratát, ha az utolsó üzenetet ("I wanna be yours") látjuk
+        if (currentMessage === 5) {
+            document.getElementById("skipButton").innerText = "So";
+        }
+    }
+</script>
+
+</body>
+</html>
